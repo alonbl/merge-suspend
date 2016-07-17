@@ -2,6 +2,7 @@ package com.googlesource.gerrit.plugins.merge_suspend;
 
 import com.google.gerrit.reviewdb.client.Branch;
 import com.google.gerrit.reviewdb.client.PatchSet;
+import com.google.gerrit.server.IdentifiedUser;
 import com.google.gerrit.server.git.CodeReviewCommit;
 import com.google.gerrit.server.git.CommitMergeStatus;
 import com.google.gerrit.server.git.validators.MergeValidationException;
@@ -29,14 +30,16 @@ public class MergeValidator implements MergeValidationListener {
      * @param destProject the destination project
      * @param destBranch the destination branch
      * @param patchSetId the patch set ID
+     * @param caller the user who initiated the merge request
      * @throws MergeValidationException if the commit fails to validate
      */
     @Override
     public void onPreMerge(Repository repo,
-    CodeReviewCommit commit,
+        CodeReviewCommit commit,
         ProjectState destProject,
         Branch.NameKey destBranch,
-        PatchSet.Id patchSetId)
+        PatchSet.Id patchSetId,
+        IdentifiedUser caller)
         throws MergeValidationException {
 
         if (state.mergeSuspend) {

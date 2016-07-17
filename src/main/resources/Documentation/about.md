@@ -3,3 +3,7 @@ A Gerrit plugin to susppend all merges into git tree, handy when force push is t
 == TODO
 
 Add per repo and per branch support.
+
+== Build
+
+https://gerrit.googlesource.com/plugins/cookbook-plugin/+/master/src/main/resources/Documentation/build.md
